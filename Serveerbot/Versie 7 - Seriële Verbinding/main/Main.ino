@@ -22,8 +22,7 @@ void setup() {
   motors.init();
   trackerSensor.init();
   pi.init();
-  pinMode(A2, OUTPUT);
-  pinMode(A0, OUTPUT);
+  pinMode(4, OUTPUT);
 }
 
 void loop() {
@@ -41,10 +40,9 @@ void loop() {
 
 void drive(int tableNumber){
   String drivingDirection = trackerSensor.followLine();
-  if(pi.detectObstacle()){
-    drivingDirection = "OBSTACLE";
-
-  }
+//  if(pi.detectObstacle()){
+//    drivingDirection = "OBSTACLE";
+//  }
 
   if(drivingDirection == "STRAIGHT"){
     motors.drive();
@@ -62,28 +60,29 @@ void drive(int tableNumber){
   } else if(drivingDirection == "RIGHT"){
     motors.turnRight();
   } 
-//  else if(drivingDirection == "STOP"){
-//    motors.turnAround();
-//    do{
-//      coffeeOnRobot = lightSensor.checkIfDark();
-//      motors.stopDriving();
-//    }while(coffeeOnRobot == true);
-//   
-//    if(coffeeOnRobot == false){
-//      stopCounter ++;
-//    }    
-//    if(stopCounter == 2) { //kitchen reached      
-//      intersectionCounter = 0;
-//      stopCounter = 0;
-//      driving = false;
-//      tableNumber = 0;
-//    }    
-//  }
-    else if(drivingDirection == "OBSTACLE"){
-        digitalWrite(A0, HIGH);
-      delay(500);
-      digitalWrite(A0, LOW);
+  else if(drivingDirection == "STOP"){
+    motors.turnAround();
+    do{
+      coffeeOnRobot = lightSensor.checkIfDark();
       motors.stopDriving();
-    }
+    }while(coffeeOnRobot == true);
+   
+    if(coffeeOnRobot == false){
+      stopCounter ++;
+    }    
+    if(stopCounter == 2) { //kitchen reached      
+      intersectionCounter = 0;
+      stopCounter = 0;
+      driving = false;
+      tableNumber = 0;
+    }    
+  }
+//    else if(drivingDirection == "OBSTACLE"){
+//      motors.stopDriving();
+//      digitalWrite(4, HIGH);
+//      delay(500);
+//      digitalWrite(4, LOW);
+//
+//    }
   
 }

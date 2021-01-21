@@ -9,7 +9,7 @@ IRsensor::IRsensor() {
 
 void IRsensor::init() {
   
-  pinMode(A2, OUTPUT);
+  pinMode(3, OUTPUT);
   irrecv.enableIRIn();
 }
 
@@ -17,9 +17,9 @@ int IRsensor::readSignal() {
   if (irrecv.decode(&result)){
     int tableNumber = convertSignal(result.value);
     irrecv.resume();
-    digitalWrite(A2, HIGH);
+    digitalWrite(3, HIGH);
     delay(400);
-    digitalWrite(A2, LOW);
+    digitalWrite(3, LOW);
     return tableNumber;
     
   } else {
