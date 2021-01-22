@@ -7,8 +7,8 @@ class TrackerSensor {
 
   private:
     const byte leftSensorPin = A3;
-    const byte centerSensorPin = A4;
-    const byte rightSensorPin = A5;
+    const byte centerSensorPin = A2;
+    const byte rightSensorPin = A1;
 
   public:
     TrackerSensor();

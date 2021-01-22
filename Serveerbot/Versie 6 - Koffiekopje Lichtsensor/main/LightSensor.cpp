@@ -12,13 +12,9 @@ void LightSensor::init() {
 boolean LightSensor::checkIfDark() {
   ldrValue = analogRead(this->pin);
   
-//  Serial.print("LDR value is : ");
-//  Serial.println(ldrValue);
-  
   if(ldrValue < 50){
     return true;
-  }
-  else {
+  } else {
     return false;
   }  
 }

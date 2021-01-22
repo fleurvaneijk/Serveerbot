@@ -3,10 +3,8 @@
 #include "Motors.h"
 #include "TrackerSensor.h"
 #include "LightSensor.h"
-#include "PiConnection.h"
 
 IRsensor irSensor = IRsensor();
-PiConnection pi = PiConnection();
 Motors motors = Motors();
 TrackerSensor trackerSensor = TrackerSensor();
 LightSensor lightSensor = LightSensor();
@@ -22,8 +20,7 @@ void setup() {
   irSensor.init();
   motors.init();
   trackerSensor.init();
-  pi.init();
-  pinMode(4, OUTPUT);
+  lightSensor.init();
   Wire.begin(0x8);
   Wire.onReceive(detectObstacle);
 }
@@ -80,11 +77,12 @@ void drive(int tableNumber){
 }
 
 void detectObstacle(int howMany) {
-  while (Wire.available()) {ast
+  while (Wire.available()) {
+    Serial.println("in wire shit");
     char c = Wire.read();
-      digitalWrite(4, HIGH);
-      delay(500);
-      digitalWrite(4, LOW);
-      motors.stopDriving();
+    digitalWrite(4, HIGH);
+    motors.stopDriving();
+    delay(500);
+    digitalWrite(4, LOW);
   }
 }

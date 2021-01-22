@@ -7,9 +7,7 @@ decode_results result;
 IRsensor::IRsensor() {
 }
 
-void IRsensor::init() {
-  
-  pinMode(3, OUTPUT);
+void IRsensor::init() {  
   irrecv.enableIRIn();
 }
 

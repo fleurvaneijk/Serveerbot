@@ -6,7 +6,7 @@
 class LightSensor {
   
   private:
-    const byte pin = A1;
+    const byte pin = A0;
 
   public:
     LightSensor();
