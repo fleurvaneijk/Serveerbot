@@ -19,8 +19,6 @@ void setup() {
   Serial.begin(9600);
   irSensor.init();
   motors.init();
-  trackerSensor.init();
-  lightSensor.init();
   Wire.begin(0x8);
   Wire.onReceive(detectObstacle);
 }
@@ -67,11 +65,12 @@ void drive(int tableNumber){
     if(coffeeOnRobot == false){
       stopCounter ++;
     }    
-    if(stopCounter == 2) { //kitchen reached      
+    if(stopCounter == 2) { //kitchen reached
+      Serial.println("kitchen reached");    
       intersectionCounter = 0;
       stopCounter = 0;
-      driving = false;
       tableNumber = 0;
+      driving = false;
     }    
   } 
 }

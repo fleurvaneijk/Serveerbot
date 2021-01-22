@@ -7,9 +7,6 @@ TrackerSensor::TrackerSensor() {
 }
 
 void TrackerSensor::init() {
-  pinMode(this->leftSensorPin, INPUT);
-  pinMode(this->centerSensorPin, INPUT);
-  pinMode(this->rightSensorPin, INPUT);
 }
 
 String TrackerSensor::followLine() {

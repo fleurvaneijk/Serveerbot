@@ -6,7 +6,6 @@ LightSensor::LightSensor() {
 }
 
 void LightSensor::init() {
-  pinMode(this->pin, INPUT);
 }
 
 boolean LightSensor::checkIfDark() {
