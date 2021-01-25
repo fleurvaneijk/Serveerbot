@@ -14,6 +14,7 @@ int tableNumber;
 int intersectionCounter = 0;
 int stopCounter = 0;
 boolean coffeeOnRobot;
+boolean objectDetected = false;
 
 void setup() {
   Serial.begin(9600);
@@ -38,6 +39,14 @@ void loop() {
 
 void drive(int tableNumber){
   String drivingDirection = trackerSensor.followLine();
+
+  if(objectDetected == true){
+    digitalWrite(4, HIGH);
+    motors.stopDriving();
+    delay(5000);
+  } else {
+    digitalWrite(4, LOW);
+  }
 
   if(drivingDirection == "STRAIGHT"){
     motors.drive();
@@ -76,12 +85,12 @@ void drive(int tableNumber){
 }
 
 void detectObstacle(int howMany) {
-  while (Wire.available()) {
-    Serial.println("in wire shit");
+  if (Wire.available()) {
     char c = Wire.read();
-    digitalWrite(4, HIGH);
-    motors.stopDriving();
-    delay(500);
-    digitalWrite(4, LOW);
+    if(c){
+      objectDetected = true;
+    } else {
+      objectDetected = false; 
+    }
   }
 }
